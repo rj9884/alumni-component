@@ -8,7 +8,7 @@ interface AlumniCardProps {
 
 export function AlumniCard({ alumni }: AlumniCardProps) {
   return (
-    <Card className="h-full hover:shadow-lg transition-shadow">
+    <Card className="h-full">
       <CardHeader className="pb-3">
         <div className="flex items-start gap-3">
           <img
@@ -18,7 +18,7 @@ export function AlumniCard({ alumni }: AlumniCardProps) {
           />
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold truncate">{alumni.full_name}</h3>
-            <p className="text-sm text-gray-600 truncate">{alumni.email}</p>
+            <p className="text-sm text-muted-foreground truncate">{alumni.email}</p>
           </div>
         </div>
       </CardHeader>
@@ -29,22 +29,22 @@ export function AlumniCard({ alumni }: AlumniCardProps) {
         </div>
         <div className="space-y-2">
           <div>
-            <p className="text-xs text-gray-500">Position</p>
+            <p className="text-xs text-muted-foreground">Position</p>
             <p className="text-sm font-medium">{alumni.current_position}</p>
           </div>
           <div>
-            <p className="text-xs text-gray-500">Company</p>
+            <p className="text-xs text-muted-foreground">Company</p>
             <p className="text-sm font-medium truncate">
               {alumni.current_company}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-500">Interests</p>
+            <p className="text-xs text-muted-foreground">Interests</p>
             <p className="text-sm truncate">{alumni.research_interests}</p>
           </div>
         </div>
         {alumni.linkedin_url && (
-          <Badge variant="outline" asChild>
+          <Badge variant="outline">
             <a
               href={alumni.linkedin_url}
               target="_blank"

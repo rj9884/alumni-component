@@ -76,7 +76,7 @@ export function AlumniFilters({ alumni, onFilterChange }: AlumniFiltersProps) {
                     type="checkbox"
                     checked={filters.labs.includes(lab)}
                     onChange={() => toggleFilter("labs", lab)}
-                    className="w-4 h-4 rounded border-gray-300"
+                    className="w-4 h-4 rounded border-input"
                   />
                   <span className="text-sm">{lab}</span>
                 </label>
@@ -95,7 +95,7 @@ export function AlumniFilters({ alumni, onFilterChange }: AlumniFiltersProps) {
                     type="checkbox"
                     checked={filters.years.includes(year)}
                     onChange={() => toggleFilter("years", year)}
-                    className="w-4 h-4 rounded border-gray-300"
+                    className="w-4 h-4 rounded border-input"
                   />
                   <span className="text-sm">{year}</span>
                 </label>
@@ -114,7 +114,7 @@ export function AlumniFilters({ alumni, onFilterChange }: AlumniFiltersProps) {
                     type="checkbox"
                     checked={filters.companies.includes(company)}
                     onChange={() => toggleFilter("companies", company)}
-                    className="w-4 h-4 rounded border-gray-300"
+                    className="w-4 h-4 rounded border-input"
                   />
                   <span className="text-sm truncate">{company}</span>
                 </label>
@@ -133,7 +133,7 @@ export function AlumniFilters({ alumni, onFilterChange }: AlumniFiltersProps) {
                     type="checkbox"
                     checked={filters.positions.includes(position)}
                     onChange={() => toggleFilter("positions", position)}
-                    className="w-4 h-4 rounded border-gray-300"
+                    className="w-4 h-4 rounded border-input"
                   />
                   <span className="text-sm truncate">{position}</span>
                 </label>
