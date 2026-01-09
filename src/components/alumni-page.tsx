@@ -51,59 +51,59 @@ export function AlumniPage() {
 
   return (
     <div className="h-screen overflow-hidden bg-background text-foreground flex flex-col">
-      <div className="bg-background border-b shrink-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2 flex-1">
-              <Search className="w-5 h-5 text-muted-foreground" />
-              <Input
-                placeholder="Search by name, email, company, position, interests..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="flex-1"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant={viewMode === "grid" ? "default" : "outline"}
-                size="icon"
-                aria-pressed={viewMode === "grid"}
-                title="Grid view"
-                onClick={() => setViewMode("grid")}
-              >
-                <LayoutGrid />
-              </Button>
-              <Button
-                variant={viewMode === "list" ? "default" : "outline"}
-                size="icon"
-                aria-pressed={viewMode === "list"}
-                title="List view"
-                onClick={() => setViewMode("list")}
-              >
-                <List />
-              </Button>
-              <Button
-                variant={viewMode === "table" ? "default" : "outline"}
-                size="icon"
-                aria-pressed={viewMode === "table"}
-                title="Table view"
-                onClick={() => setViewMode("table")}
-              >
-                <TableIcon />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <style>{`
+        .scrollbar-hidden { scrollbar-width: none; }
+        .scrollbar-hidden::-webkit-scrollbar { display: none; }
+      `}</style>
 
       <div className="flex-1 overflow-hidden">
         <div className="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="h-full grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="lg:col-span-1 overflow-y-auto">
+            <div className="lg:col-span-1 overflow-y-auto scrollbar-hidden">
               <AlumniFilters alumni={ALUMNI_DATA} onFilterChange={setFilters} />
             </div>
 
             <div className="lg:col-span-3 flex flex-col overflow-hidden">
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <div className="flex items-center gap-2 flex-1">
+                  <Search className="w-5 h-5 text-muted-foreground" />
+                  <Input
+                    placeholder="Search by name, email, company, position, interests..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="flex-1"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant={viewMode === "grid" ? "default" : "outline"}
+                    size="icon"
+                    aria-pressed={viewMode === "grid"}
+                    title="Grid view"
+                    onClick={() => setViewMode("grid")}
+                  >
+                    <LayoutGrid />
+                  </Button>
+                  <Button
+                    variant={viewMode === "list" ? "default" : "outline"}
+                    size="icon"
+                    aria-pressed={viewMode === "list"}
+                    title="List view"
+                    onClick={() => setViewMode("list")}
+                  >
+                    <List />
+                  </Button>
+                  <Button
+                    variant={viewMode === "table" ? "default" : "outline"}
+                    size="icon"
+                    aria-pressed={viewMode === "table"}
+                    title="Table view"
+                    onClick={() => setViewMode("table")}
+                  >
+                    <TableIcon />
+                  </Button>
+                </div>
+              </div>
               {filteredAlumni.length === 0 ? (
                 <div className="text-center py-12">
                   <p className="text-muted-foreground text-lg">
@@ -111,9 +111,9 @@ export function AlumniPage() {
                   </p>
                 </div>
               ) : (
-                <div className="flex-1 overflow-y-auto">
+                <div className={`flex-1 overflow-y-auto ${viewMode === "grid" ? "scrollbar-hidden" : ""}`}>
                   {viewMode === "grid" && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {filteredAlumni.map((alumni) => (
                         <AlumniCard key={alumni.id} alumni={alumni} />
                       ))}

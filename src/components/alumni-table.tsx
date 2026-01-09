@@ -12,19 +12,17 @@ import {
   type VisibilityState,
   type Row,
 } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -123,6 +121,7 @@ export function AlumniTable({ data, search }: { data: AlumniMember[]; search?: s
         a.full_name.toLowerCase().includes(v) ||
         a.email.toLowerCase().includes(v) ||
         a.lab.toLowerCase().includes(v) ||
+        String(a.graduation_year).toLowerCase().includes(v) ||
         a.current_company.toLowerCase().includes(v) ||
         a.current_position.toLowerCase().includes(v) ||
         (a.research_interests ?? "").toLowerCase().includes(v)
@@ -154,38 +153,6 @@ export function AlumniTable({ data, search }: { data: AlumniMember[]; search?: s
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Search alumni..."
-          value={globalFilter}
-          onChange={(event) => table.setGlobalFilter(event.target.value)}
-          className="max-w-sm"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
       <div className="overflow-hidden rounded-md border border-input bg-card">
         <Table>
           <TableHeader>
