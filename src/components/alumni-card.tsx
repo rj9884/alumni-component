@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { AlumniMember } from "@/data/alumni";
+import { Linkedin } from 'lucide-react';
 
 interface AlumniCardProps {
   alumni: AlumniMember;
@@ -45,6 +46,7 @@ export function AlumniCard({ alumni }: AlumniCardProps) {
         {alumni.linkedin_url && (
           <Button variant={"default"} className="w-full" asChild>
             <a href={alumni.linkedin_url} target="_blank" rel="noopener noreferrer">
+              <Linkedin className="mr-2 h-4 w-4" />
               LinkedIn Profile
             </a>
           </Button>
@@ -53,3 +55,5 @@ export function AlumniCard({ alumni }: AlumniCardProps) {
     </Card>
   );
 }
+
+
